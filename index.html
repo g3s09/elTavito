@@ -3,106 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>elTavito:) | Centro de Control</title>
+    <title>elTavito:) | Terminal Pro</title>
     <style>
-        /* 1. VARIABLES: Como en Mecatrónica, definimos los parámetros primero */
         :root {
             --rojo-gamer: #ff003c;
-            --rojo-glow: rgba(255, 0, 60, 0.5);
-            --fondo-oscuro: #0a0a0a;
-            --cristal: rgba(255, 255, 255, 0.05);
+            --rojo-glow: rgba(255, 0, 60, 0.4);
+            --fondo-negro: #050505;
         }
 
-        /* 2. RESET Y CUERPO */
-        body {
+        body, html {
             margin: 0;
             padding: 0;
-            background-color: var(--fondo-oscuro);
-            font-family: 'Segoe UI', Roboto, sans-serif;
+            width: 100%;
+            height: 100%;
+            background-color: var(--fondo-negro);
             color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: hidden; /* Evita scroll innecesario */
+            overflow: hidden;
         }
 
-        /* 3. EL CONTENEDOR "GLASS" (Efecto cristal) */
+        /* 1. ANIMACIÓN DE FONDO (PARTÍCULAS) */
+        .background-dots {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(var(--rojo-glow) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            animation: move-bg 20s linear infinite;
+        }
+
+        @keyframes move-bg {
+            from { background-position: 0 0; }
+            to { background-position: 40px 40px; }
+        }
+
+        /* 2. EFECTO SCANLINE (Línea de monitor) */
+        .scanline {
+            width: 100%;
+            height: 100px;
+            z-index: 5;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(255, 0, 60, 0.05) 50%, rgba(0, 0, 0, 0) 100%);
+            opacity: 0.1;
+            position: absolute;
+            bottom: 100%;
+            animation: scanline 6s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { bottom: 100%; }
+            100% { bottom: -100px; }
+        }
+
+        /* 3. TARJETA GLASSMORPISM */
         .card {
-            background: var(--cristal);
-            backdrop-filter: blur(15px); /* Desenfoque de fondo */
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 3rem;
-            border-radius: 20px;
+            background: rgba(20, 20, 20, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 0, 60, 0.2);
+            padding: 4rem 2rem;
+            border-radius: 15px;
             text-align: center;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-            max-width: 500px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
             position: relative;
+            z-index: 10;
         }
 
-        /* 4. EL LOGO NEÓN CON ANIMACIÓN */
+        /* 4. TEXTO NEÓN */
         h1 {
-            font-size: 4rem;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
             margin: 0;
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            /* Efecto de luz roja */
-            text-shadow: 
-                0 0 10px var(--rojo-gamer),
-                0 0 20px var(--rojo-gamer),
-                0 0 40px var(--rojo-glow);
-            animation: flicker 2s infinite alternate;
+            letter-spacing: 10px;
+            color: #fff;
+            text-shadow: 0 0 10px var(--rojo-gamer), 0 0 30px var(--rojo-gamer);
+            animation: flicker 4s infinite alternate;
         }
 
-        /* 5. SUBTÍTULO ESTILO CÓDIGO */
-        .status {
+        .status-text {
             color: var(--rojo-gamer);
-            font-family: 'Courier New', Courier, monospace;
-            margin-top: 1rem;
+            font-family: 'Courier New', monospace;
             display: block;
-            font-weight: bold;
+            margin-top: 15px;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
+            opacity: 0.8;
         }
 
-        /* 6. ANIMACIÓN DE PARPADEO (Flicker) */
-        @keyframes flicker {
-            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-                opacity: 1;
-            }
-            20%, 22%, 24%, 55% {
-                opacity: 0.5; /* Simula un neón fallando un poco, muy industrial */
-            }
-        }
-
-        /* 7. BOTÓN PRO */
+        /* 5. BOTÓN GAMER */
         .btn {
-            margin-top: 2rem;
-            padding: 12px 30px;
+            margin-top: 40px;
+            padding: 15px 40px;
             background: transparent;
             border: 2px solid var(--rojo-gamer);
             color: white;
             text-decoration: none;
             text-transform: uppercase;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: 0.3s;
+            font-weight: 900;
+            letter-spacing: 2px;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
             display: inline-block;
         }
 
         .btn:hover {
             background: var(--rojo-gamer);
-            box-shadow: 0 0 20px var(--rojo-gamer);
-            cursor: pointer;
+            box-shadow: 0 0 30px var(--rojo-gamer);
+            color: black;
         }
+
+        /* 6. EFECTO FLICKER (NEÓN REALISTA) */
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; text-shadow: 0 0 10px var(--rojo-gamer), 0 0 30px var(--rojo-gamer); }
+            20%, 24%, 55% { opacity: 0.4; text-shadow: none; }
+        }
+
     </style>
 </head>
 <body>
 
+    <div class="background-dots"></div>
+    <div class="scanline"></div>
+
     <div class="card">
         <h1>elTavito:)</h1>
-        <span class="status">_SYSTEM_ONLINE [MECATRÓNICA]</span>
-        <p>Desarrollo Web | Gaming | Ingeniería</p>
-        <a href="#" class="btn">Entrar al Servidor</a>
+        <span class="status-text">> MECATRÓNICA_OS_V1.0</span>
+        <p style="opacity: 0.6; font-size: 0.8rem; margin-top: 20px;">[ WEB DEVELOPER | COD STREAMER ]</p>
+        <a href="#" class="btn">INICIAR SESIÓN</a>
     </div>
 
 </body>
