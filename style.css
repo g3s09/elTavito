@@ -28,42 +28,58 @@
 @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--rojo-gamer); } }
 
 /* --- AJUSTES PARA MÓVIL (iOS y Android) --- */
+/* --- AJUSTES DEFINITIVOS PARA MÓVIL --- */
 @media (max-width: 768px) {
     .hero {
-        padding: 40px 20px;
-        text-align: center;
+        padding: 20px;
+        justify-content: center;
+        height: 100vh; /* Forzamos a que ocupe toda la pantalla del cel */
     }
 
     .hero h1 {
-        font-size: 3.2rem; /* Más pequeño para que quepa en el iPhone */
-        letter-spacing: 8px;
-        margin-bottom: 20px;
+        font-size: 2.2rem; /* Tamaño seguro para que no se salga de la pantalla */
+        letter-spacing: 4px; /* Reducimos espacio entre letras en móvil */
+        width: 100%;
+        line-height: 1.2;
     }
 
     .hero p {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
+        margin-top: 10px;
         letter-spacing: 2px;
     }
 
     .services {
-        padding: 60px 20px;
-    }
-
-    .services-grid {
-        grid-template-columns: 1fr; /* Una sola columna en vertical */
-        gap: 20px;
-    }
-
-    .service-card {
-        padding: 30px 20px; /* Menos espacio interno */
+        padding: 40px 15px;
     }
 
     .services-header h2 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+        letter-spacing: 3px;
     }
 
-    .btn-gold {
-        width: 100%; /* El botón ocupa todo el ancho para que sea fácil de picar con el pulgar */
-        padding: 15px 0;
+    .services-grid {
+        grid-template-columns: 1fr; /* Una sola columna vertical */
+        gap: 20px;
+        padding: 0 10px;
     }
+
+    .service-card {
+        padding: 30px 15px;
+        text-align: center;
+    }
+
+    /* Ajuste para que el botón de WhatsApp no sea gigante */
+    .btn-gold {
+        width: 90%;
+        max-width: 300px;
+        padding: 15px 0;
+        font-size: 0.8rem;
+    }
+}
+
+/* Tip extra: Evita que el usuario pueda hacer scroll hacia los lados por error */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
 }
