@@ -26,3 +26,44 @@
 
 @keyframes typing { from { width: 0 } to { width: 100% } }
 @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--rojo-gamer); } }
+
+/* --- AJUSTES PARA MÓVIL (iOS y Android) --- */
+@media (max-width: 768px) {
+    .hero {
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 3.2rem; /* Más pequeño para que quepa en el iPhone */
+        letter-spacing: 8px;
+        margin-bottom: 20px;
+    }
+
+    .hero p {
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+    }
+
+    .services {
+        padding: 60px 20px;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr; /* Una sola columna en vertical */
+        gap: 20px;
+    }
+
+    .service-card {
+        padding: 30px 20px; /* Menos espacio interno */
+    }
+
+    .services-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .btn-gold {
+        width: 100%; /* El botón ocupa todo el ancho para que sea fácil de picar con el pulgar */
+        padding: 15px 0;
+    }
+}
