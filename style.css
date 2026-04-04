@@ -1,0 +1,28 @@
+/* REEMPLAZA TU .card CON ESTE PARA EL EFECTO 3D */
+.card {
+    background: rgba(20, 20, 20, 0.7);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 0, 60, 0.2);
+    padding: 4rem 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
+    position: relative;
+    z-index: 10;
+    /* ESTO ES LO NUEVO: Suaviza el movimiento */
+    transition: transform 0.2s ease-out; 
+}
+
+/* AÑADE ESTO PARA EL EFECTO DE ESCRITURA */
+.status-text {
+    display: inline-block;
+    overflow: hidden; /* Oculta el texto que no ha salido */
+    border-right: 3px solid var(--rojo-gamer); /* Cursor de terminal */
+    white-space: nowrap; 
+    margin: 0 auto;
+    letter-spacing: 3px;
+    animation: typing 3.5s steps(30, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing { from { width: 0 } to { width: 100% } }
+@keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--rojo-gamer); } }
