@@ -1,18 +1,18 @@
-/* --- SUSTITUYE TU CSS CON ESTAS REGLAS CRÍTICAS --- */
-
 :root {
     --fondo: #121418;
     --tarjeta: #1a1d24;
     --oro: #c5a059;
+    --oro-glow: rgba(197, 160, 89, 0.2);
+    --texto: #e0e0e0;
+    --texto-oscuro: #a0a0a0;
 }
 
 * { 
     box-sizing: border-box; 
-    margin: 0; 
-    padding: 0; 
-    /* Elimina cualquier subrayado o línea fantasma en iOS */
+    margin: 0; padding: 0; 
     text-decoration: none !important; 
-    -webkit-tap-highlight-color: transparent; 
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
 }
 
 html, body {
@@ -20,71 +20,68 @@ html, body {
     max-width: 100vw;
     overflow-x: hidden;
     background-color: var(--fondo);
-    color: #e0e0e0;
+    color: var(--texto);
     font-family: 'Poppins', sans-serif;
-    /* Suavizado de fuentes para Mac/iOS */
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
-/* FIX DE LA LÍNEA: Forzamos el botón a ser un bloque limpio */
+/* NAVEGACIÓN */
+nav {
+    position: fixed; top: 0; width: 100%;
+    background: rgba(18, 20, 24, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 15px 0; z-index: 1000;
+    border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+}
+nav ul { display: flex; justify-content: center; list-style: none; gap: 25px; }
+nav a { color: var(--texto-oscuro); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px; font-weight: 600; transition: 0.3s; }
+nav a:hover { color: var(--oro); }
+
+/* ANIMACIONES */
+.hidden { opacity: 0; transform: translateY(15px); transition: all 0.6s ease-out; backface-visibility: hidden; }
+.show { opacity: 1 !important; transform: translateY(0) !important; }
+
+/* HERO & SECCIONES */
+.hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
+.hero h1 { font-size: clamp(2rem, 8vw, 5rem); font-weight: 200; letter-spacing: 8px; color: white; margin-bottom: 15px; }
+.hero h1 span { color: var(--oro); font-weight: 700; }
+
+section { padding: 80px 20px; max-width: 1100px; margin: 0 auto; text-align: center; position: relative; z-index: 10; }
+
+/* GRID & CARDS */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+.card, .service-card { 
+    background-color: var(--tarjeta); padding: 40px; border-radius: 4px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: 0.3s; 
+}
+
+/* --- FORMULARIO FIX (ZOOM & ESTÉTICA) --- */
+form { max-width: 500px; margin: 0 auto; text-align: left; }
+
+input, textarea {
+    width: 100%; padding: 15px; margin-bottom: 15px;
+    background: #0d0f12; border: 1px solid rgba(255,255,255,0.1);
+    color: white; font-family: inherit;
+    /* REGLA CRÍTICA: 16px evita el zoom en iPhone */
+    font-size: 16px !important; 
+    border-radius: 4px;
+    -webkit-appearance: none;
+}
+
 .btn-gold {
-    display: inline-block;
-    padding: 18px 40px;
-    background: transparent;
-    color: var(--oro);
-    /* Usamos outline en lugar de border para evitar el desfase de píxel en Safari */
-    outline: 1px solid var(--oro);
-    outline-offset: -1px;
-    border: none !important;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-weight: 600;
-    font-size: 0.8rem;
-    position: relative;
-    /* Forzamos a la GPU a renderizar esto aparte */
-    transform: translateZ(0); 
+    display: inline-block; width: 100%; padding: 18px;
+    background: transparent; color: var(--oro);
+    outline: 1px solid var(--oro); outline-offset: -1px;
+    border: none !important; text-transform: uppercase;
+    letter-spacing: 3px; font-weight: 600; cursor: pointer;
+    transition: 0.3s; transform: translateZ(0);
 }
+.btn-gold:hover { background: var(--oro); color: #121418; box-shadow: 0 0 20px var(--oro-glow); }
 
-/* AJUSTE DE ANIMACIÓN: Si no ves los cuadros, es porque el iPhone es lento 
-   al detectar el scroll. Vamos a hacer que aparezcan más rápido. */
-.hidden {
-    opacity: 0;
-    transform: translateY(15px);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    /* Evita parpadeos en iOS */
-    backface-visibility: hidden;
-}
-
-.show {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-}
-
-/* MEDIA QUERY AGRESIVO PARA IPHONE */
-@media (max-width: 480px) {
-    .hero h1 {
-        font-size: 1.8rem !important;
-        letter-spacing: 3px !important;
-    }
-    .service-card {
-        margin: 15px auto;
-        width: 90%;
-        /* Quitamos sombras pesadas que pueden causar líneas de renderizado */
-        box-shadow: 0 5px 15px rgba(0,0,0,0.4); 
-    }
-}
+/* RESPONSIVO */
 @media (max-width: 768px) {
-    .grid {
-        grid-template-columns: 1fr !important; /* Fuerza una sola columna */
-        padding: 0 10px;
-    }
-    
-    .hero h1 {
-        font-size: 2.2rem !important; /* Para que el texto no se corte */
-    }
-
-    nav ul {
-        gap: 15px; /* Menos espacio en el menú para que quepa */
-    }
+    .grid { grid-template-columns: 1fr !important; }
+    .hero h1 { font-size: 2.2rem !important; letter-spacing: 4px !important; }
+    nav ul { gap: 15px; }
+    section { padding: 60px 15px; }
 }

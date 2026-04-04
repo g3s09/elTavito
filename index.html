@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-   <meta name="description" content="elTavito.tech | Soluciones de Ingeniería Web, Diseño Premium y Optimización de Sistemas por Sandra, experta en Mechatronics.">
-<meta name="keywords" content="Diseño Web, Mechatronics, Optimización PC, Streamer Setup, elTavito, Ingeniería México">
-<meta name="author" content="Sandra - elTavito.tech">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>elTavito.tech | Ingeniería & Diseño Web</title>
+    
+    <meta name="description" content="Soluciones de Ingeniería Web, Diseño Premium y Optimización de Sistemas por Sandra.">
+    <meta name="author" content="Sandra - elTavito.tech">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2942/2942531.png" type="image/x-icon">
 
-<meta property="og:title" content="elTavito.tech | Ingeniería & Diseño Web">
-<meta property="og:description" content="Diseño de alta gama y optimización técnica para tus proyectos digitales.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://eltavito.netlify.app/">
-<meta property="og:image" content="https://eltavito.netlify.app/assets/og-image.jpg"> 
-
-<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2942/2942531.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
         :root {
@@ -26,14 +24,15 @@
 
         * { 
             box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
-            text-decoration: none !important;
+            margin: 0; padding: 0; 
+            text-decoration: none !important; 
+            -webkit-tap-highlight-color: transparent;
             scroll-behavior: smooth;
         }
 
         html, body {
             width: 100%;
+            max-width: 100vw;
             overflow-x: hidden;
             background-color: var(--fondo);
             color: var(--texto);
@@ -41,175 +40,76 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- NUEVO: CONTENEDOR DE PARTÍCULAS --- */
+        /* FONDO DE PARTÍCULAS */
         #particles-js {
             position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1; /* Detrás de todo el contenido */
+            width: 100%; height: 100%;
+            top: 0; left: 0;
+            z-index: 1;
             background-color: var(--fondo);
         }
 
-        /* --- CONTENIDO CON Z-INDEX PARA ESTAR ENCIMA --- */
-        nav, section {
-            position: relative;
-            z-index: 10;
-        }
-
-        /* NAVEGACIÓN PRO */
+        /* NAVEGACIÓN */
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(18, 20, 24, 0.9);
+            position: fixed; top: 0; width: 100%;
+            background: rgba(18, 20, 24, 0.95);
             backdrop-filter: blur(10px);
-            padding: 15px 0;
-            z-index: 1000;
+            padding: 15px 0; z-index: 1000;
             border-bottom: 1px solid rgba(197, 160, 89, 0.1);
         }
-
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            gap: 25px;
-        }
-
-        nav a {
-            color: var(--texto-oscuro);
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
+        nav ul { display: flex; justify-content: center; list-style: none; gap: 20px; }
+        nav a { color: var(--texto-oscuro); text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; font-weight: 600; transition: 0.3s; }
         nav a:hover { color: var(--oro); }
 
-        /* ANIMACIONES AL SCROLL */
-        .hidden {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s ease-out;
-        }
+        /* ANIMACIONES */
+        .hidden { opacity: 0; transform: translateY(15px); transition: all 0.6s ease-out; backface-visibility: hidden; }
+        .show { opacity: 1 !important; transform: translateY(0) !important; }
 
-        .show {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-        }
+        /* SECCIONES */
+        section { padding: 80px 20px; max-width: 1100px; margin: 0 auto; text-align: center; position: relative; z-index: 10; }
+        .section-title { font-size: 2rem; font-weight: 300; letter-spacing: 5px; text-transform: uppercase; color: var(--oro); margin-bottom: 50px; }
 
         /* HERO */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .hero h1 {
-            font-size: clamp(2rem, 8vw, 5rem);
-            font-weight: 200;
-            letter-spacing: 8px;
-            color: white;
-            margin-bottom: 15px;
-        }
-
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .hero h1 { font-size: clamp(1.8rem, 8vw, 5rem); font-weight: 200; letter-spacing: 5px; color: white; margin-bottom: 15px; }
         .hero h1 span { color: var(--oro); font-weight: 700; }
 
-        /* SECCIONES COMUNES */
-        section {
-            padding: 100px 20px;
-            max-width: 1100px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            font-weight: 300;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            color: var(--oro);
-            margin-bottom: 50px;
-        }
-
-        /* GRID DE SERVICIOS */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background-color: var(--tarjeta);
-            padding: 40px;
-            border-radius: 4px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border-bottom: 2px solid transparent;
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            border-bottom: 2px solid var(--oro);
-            transform: translateY(-5px);
-        }
-
+        /* GRID & CARDS */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .card { background-color: var(--tarjeta); padding: 40px; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: 0.3s; }
         .card i { color: var(--oro); font-size: 2.5rem; margin-bottom: 20px; }
 
-        /* METODOLOGÍA (PASOS) */
-        .step {
-            text-align: left;
-            padding: 20px;
-            border-left: 1px solid var(--oro);
-            margin-bottom: 20px;
-        }
-
-        .step-num { font-weight: 700; color: var(--oro); opacity: 0.5; margin-bottom: 5px; }
-
-        /* FORMULARIO */
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: left;
-            background: var(--tarjeta);
-            padding: 30px;
-            border-radius: 8px;
-        }
-
+        /* FORMULARIO FIX IPHONE */
+        form { max-width: 550px; margin: 0 auto; text-align: left; background: var(--tarjeta); padding: 30px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        
         input, textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            background: #121418;
-            border: 1px solid rgba(255,255,255,0.1);
-            color: white;
-            font-family: inherit;
+            width: 100%; padding: 15px; margin-bottom: 15px;
+            background: #0d0f12; border: 1px solid rgba(255,255,255,0.1);
+            color: white; font-family: inherit;
+            /* REGLA CRÍTICA: 16px evita el zoom en iPhone */
+            font-size: 16px !important; 
+            border-radius: 4px;
+            -webkit-appearance: none;
         }
 
         .btn-gold {
-            display: inline-block;
-            width: 100%;
-            padding: 15px;
-            background: var(--oro);
-            color: #121418;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border: none;
-            cursor: pointer;
+            display: inline-block; width: 100%; padding: 18px;
+            background: transparent; color: var(--oro);
+            outline: 1px solid var(--oro); outline-offset: -1px;
+            border: none !important; text-transform: uppercase;
+            letter-spacing: 3px; font-weight: 600; cursor: pointer;
             transition: 0.3s;
         }
+        .btn-gold:hover { background: var(--oro); color: #121418; box-shadow: 0 0 20px var(--oro-glow); }
 
-        .btn-gold:hover { background: #d4b475; box-shadow: 0 0 20px var(--oro-glow); }
+        /* FOOTER */
+        footer { background: #0d0f12; padding: 40px 20px; border-top: 1px solid rgba(197, 160, 89, 0.1); text-align: center; position: relative; z-index: 10; }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            section { padding: 60px 20px; }
+            .grid { grid-template-columns: 1fr !important; }
+            .hero h1 { font-size: 2rem !important; }
+            section { padding: 60px 15px; }
+            form { padding: 20px; width: 100%; }
         }
     </style>
 </head>
@@ -226,46 +126,23 @@
     </nav>
 
     <section class="hero" id="inicio">
-        <p class="hidden" style="color: var(--oro); letter-spacing: 3px; margin-bottom: 10px;">INGENIERÍA WEB</p>
+        <p class="hidden" style="color: var(--oro); letter-spacing: 3px; margin-bottom: 10px;">INGENIERÍA MECATRÓNICA</p>
         <h1 class="hidden">ELTAVITO<span>.TECH</span></h1>
-        <p class="hidden" style="color: var(--texto-oscuro);">Soluciones de alto impacto visual y técnico.</p>
+        <p class="hidden" style="color: var(--texto-oscuro);">Diseño Web & Optimización de Sistemas.</p>
     </section>
 
     <section id="servicios">
         <h2 class="section-title hidden">Servicios</h2>
         <div class="grid">
             <div class="card hidden">
-                <i class="fas fa-layer-group"></i>
-                <h3>DISEÑO PREMIUM</h3>
-                <p>Interfaces estéticas inspiradas en el sector de lujo y barberías pro.</p>
-            </div>
-            <div class="card hidden">
-                <i class="fas fa-bolt"></i>
+                <i class="fas fa-microchip"></i>
                 <h3>OPTIMIZACIÓN</h3>
-                <p>Máximo rendimiento en cualquier hardware. Especialidad en setups técnicos.</p>
+                <p>Máximo rendimiento para hardware de bajos recursos y setups pro.</p>
             </div>
             <div class="card hidden">
-                <i class="fas fa-shield-halved"></i>
-                <h3>SEGURIDAD</h3>
-                <p>Arquitectura sólida y moderna para proteger tu identidad digital.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="metodologia">
-        <h2 class="section-title hidden">Mi Proceso</h2>
-        <div class="grid">
-            <div class="step hidden">
-                <div class="step-num">01. DIAGNÓSTICO</div>
-                <p>Analizo tus necesidades y el hardware disponible para el proyecto.</p>
-            </div>
-            <div class="step hidden">
-                <div class="step-num">02. DESARROLLO</div>
-                <p>Codificación limpia siguiendo estándares de ingeniería mecatrónica.</p>
-            </div>
-            <div class="step hidden">
-                <div class="step-num">03. ENTREGA</div>
-                <p>Lanzamiento oficial con optimización de SEO y tiempos de carga.</p>
+                <i class="fas fa-code"></i>
+                <h3>DESARROLLO</h3>
+                <p>Páginas web estéticas y funcionales con estándares de ingeniería.</p>
             </div>
         </div>
     </section>
@@ -273,59 +150,41 @@
     <section id="contacto">
         <h2 class="section-title hidden">Contacto</h2>
         <form name="contacto-tavito" method="POST" data-netlify="true" class="hidden">
+            <input type="hidden" name="form-name" value="contacto-tavito" />
+            
             <input type="text" name="nombre" placeholder="Tu Nombre" required>
             <input type="email" name="email" placeholder="Tu Email" required>
-            <textarea name="mensaje" rows="5" placeholder="Cuéntame sobre tu proyecto..." required></textarea>
+            <textarea name="mensaje" rows="4" placeholder="Háblame de tu proyecto..." required></textarea>
+            
             <button type="submit" class="btn-gold">ENVIAR PROPUESTA</button>
         </form>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <footer style="background: #0d0f12; padding: 60px 20px; border-top: 1px solid rgba(197, 160, 89, 0.1); text-align: center; position: relative; z-index: 10;">
-    <div style="max-width: 1100px; margin: 0 auto;">
-        <h2 style="color: var(--oro); font-weight: 200; letter-spacing: 5px; margin-bottom: 20px;">ELTAVITO<span>.TECH</span></h2>
-        
-        <div style="margin-bottom: 30px; display: flex; justify-content: center; gap: 25px;">
-            <a href="https://github.com/g3s09" target="_blank" style="color: var(--texto-oscuro); font-size: 1.5rem; transition: 0.3s;" onmouseover="this.style.color='#c5a059'" onmouseout="this.style.color='#a0a0a0'"><i class="fab fa-github"></i></a>
-            <a href="#" style="color: var(--texto-oscuro); font-size: 1.5rem; transition: 0.3s;" onmouseover="this.style.color='#c5a059'" onmouseout="this.style.color='#a0a0a0'"><i class="fab fa-tiktok"></i></a>
-            <a href="#" style="color: var(--texto-oscuro); font-size: 1.5rem; transition: 0.3s;" onmouseover="this.style.color='#c5a059'" onmouseout="this.style.color='#a0a0a0'"><i class="fab fa-youtube"></i></a>
-            <a href="https://wa.me/521" target="_blank" style="color: var(--texto-oscuro); font-size: 1.5rem; transition: 0.3s;" onmouseover="this.style.color='#c5a059'" onmouseout="this.style.color='#a0a0a0'"><i class="fab fa-whatsapp"></i></a>
-        </div>
+    <footer>
+        <p style="color: var(--oro); letter-spacing: 2px; margin-bottom: 10px;">ELTAVITO.TECH</p>
+        <p style="color: var(--texto-oscuro); font-size: 0.7rem;">&copy; 2026 | Desarrollado por Sandra. Todos los derechos reservados.</p>
+    </footer>
 
-        <p style="color: var(--texto-oscuro); font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 10px;">
-            &copy; 2026 elTavito.tech | Desarrollado con estándares de Ingeniería Mecatrónica.
-        </p>
-        <p style="color: rgba(255,255,255,0.2); font-size: 0.7rem;">
-            Optimizado para alto rendimiento y bajo consumo de recursos.
-        </p>
-    </div>
-</footer>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // CONFIGURACIÓN DE PARTÍCULAS DORADAS
+        // CONFIGURACIÓN DE PARTÍCULAS
         particlesJS("particles-js", {
             "particles": {
-                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#c5a059" }, /* ORO */
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.3, "random": false },
-                "size": { "value": 3, "random": true },
-                "line_linked": { "enable": true, "distance": 150, "color": "#c5a059", "opacity": 0.2, "width": 1 },
-                "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#c5a059" },
+                "opacity": { "value": 0.2 },
+                "size": { "value": 2 },
+                "line_linked": { "enable": true, "distance": 150, "color": "#c5a059", "opacity": 0.1, "width": 1 },
+                "move": { "enable": true, "speed": 1.5 }
             },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
-                "modes": { "repulse": { "distance": 100, "duration": 0.4 }, "push": { "particles_nb": 4 } }
-            },
+            "interactivity": { "events": { "onhover": { "enable": true, "mode": "repulse" } } },
             "retina_detect": true
         });
 
-        // OBSERVADOR PARA ANIMACIONES AL SCROLL
+        // ANIMACIONES AL SCROLL
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                }
+                if (entry.isIntersecting) { entry.target.classList.add('show'); }
             });
         }, { threshold: 0.1 });
 
