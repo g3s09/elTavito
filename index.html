@@ -3,23 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>elTavito.tech | Pro</title>
+    <title>elTavito.tech | Ingeniería & Diseño Web</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
         :root {
             --fondo: #121418;
             --tarjeta: #1a1d24;
             --oro: #c5a059;
+            --oro-glow: rgba(197, 160, 89, 0.2);
             --texto: #e0e0e0;
+            --texto-oscuro: #a0a0a0;
         }
 
-        /* RESET TOTAL PARA EVITAR LÍNEAS EXTRAÑAS */
         * { 
             box-sizing: border-box; 
             margin: 0; 
             padding: 0; 
-            text-decoration: none !important; /* Mata cualquier subrayado */
-            border: none;
-            outline: none;
+            text-decoration: none !important;
+            scroll-behavior: smooth;
         }
 
         html, body {
@@ -31,11 +35,41 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* ANIMACIÓN MÁS SIMPLE PARA QUE NO FALLE */
+        /* NAVEGACIÓN PRO */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(18, 20, 24, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--texto-oscuro);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: var(--oro); }
+
+        /* ANIMACIONES AL SCROLL */
         .hidden {
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transition: all 0.8s ease-out;
         }
 
         .show {
@@ -55,127 +89,174 @@
         }
 
         .hero h1 {
-            font-size: clamp(2rem, 7vw, 5rem);
+            font-size: clamp(2rem, 8vw, 5rem);
             font-weight: 200;
-            letter-spacing: 5px;
-            text-transform: uppercase;
+            letter-spacing: 8px;
             color: white;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .hero h1 span { color: var(--oro); font-weight: 700; }
 
-        /* BOTÓN LIMPIO SIN LÍNEAS */
-        .btn-gold {
-            display: inline-block;
-            padding: 15px 30px;
-            background: transparent;
-            border: 1px solid var(--oro) !important; /* Forzamos solo el borde dorado */
-            color: var(--oro);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        /* SECCIÓN SERVICIOS */
-        .services {
-            padding: 60px 20px;
+        /* SECCIONES COMUNES */
+        section {
+            padding: 100px 20px;
             max-width: 1100px;
             margin: 0 auto;
+            text-align: center;
         }
 
-        .services-grid {
+        .section-title {
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--oro);
+            margin-bottom: 50px;
+        }
+
+        /* GRID DE SERVICIOS */
+        .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
 
-        .service-card {
+        .card {
             background-color: var(--tarjeta);
-            padding: 40px 25px;
+            padding: 40px;
             border-radius: 4px;
-            text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-bottom: 2px solid transparent;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            border-bottom: 2px solid var(--oro);
+            transform: translateY(-5px);
+        }
+
+        .card i { color: var(--oro); font-size: 2.5rem; margin-bottom: 20px; }
+
+        /* METODOLOGÍA (PASOS) */
+        .step {
+            text-align: left;
+            padding: 20px;
+            border-left: 1px solid var(--oro);
             margin-bottom: 20px;
         }
 
-        .service-card h3 {
-            color: var(--oro);
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .step-num { font-weight: 700; color: var(--oro); opacity: 0.5; margin-bottom: 5px; }
+
+        /* FORMULARIO */
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+            background: var(--tarjeta);
+            padding: 30px;
+            border-radius: 8px;
         }
 
-        /* MEDIA QUERIES PARA MÓVIL */
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            background: #121418;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            font-family: inherit;
+        }
+
+        .btn-gold {
+            display: inline-block;
+            width: 100%;
+            padding: 15px;
+            background: var(--oro);
+            color: #121418;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-gold:hover { background: #d4b475; box-shadow: 0 0 20px var(--oro-glow); }
+
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; letter-spacing: 3px; }
-            .service-card { padding: 30px 20px; }
+            .hero h1 { font-size: 2.2rem; }
+            section { padding: 60px 20px; }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-    <div class="background-dots"></div>
+    <nav>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
 
-    <section class="hero">
-        <p class="hidden" style="letter-spacing: 5px; color: var(--oro); margin-bottom: 10px;">SOLUCIONES DIGITALES</p>
+    <section class="hero" id="inicio">
+        <p class="hidden" style="color: var(--oro); letter-spacing: 3px; margin-bottom: 10px;">INGENIERÍA WEB</p>
         <h1 class="hidden">ELTAVITO<span>.TECH</span></h1>
-        <a href="#servicios" class="btn-gold hidden">EXPLORAR MÓDULOS</a>
+        <p class="hidden" style="color: var(--texto-oscuro);">Soluciones de alto impacto visual y técnico.</p>
     </section>
 
-    <section class="services" id="servicios">
-        <div class="services-header hidden">
-            <h2>Ingeniería Web</h2>
-        </div>
-
-        <div class="services-grid">
-            <div class="service-card hidden">
-                <i class="fas fa-code" style="color: var(--oro); font-size: 2rem; margin-bottom: 15px;"></i>
-                <h3>DISEÑO WEB PRO</h3>
-                <p>Sitios de alto impacto para negocios que buscan exclusividad y elegancia.</p>
+    <section id="servicios">
+        <h2 class="section-title hidden">Servicios</h2>
+        <div class="grid">
+            <div class="card hidden">
+                <i class="fas fa-layer-group"></i>
+                <h3>DISEÑO PREMIUM</h3>
+                <p>Interfaces estéticas inspiradas en el sector de lujo y barberías pro.</p>
             </div>
-            <div class="service-card hidden">
+            <div class="card hidden">
+                <i class="fas fa-bolt"></i>
                 <h3>OPTIMIZACIÓN</h3>
-                <i class="fas fa-microchip" style="color: var(--oro); font-size: 2rem; margin-bottom: 15px;"></i>
-                <p>Hacemos que tu tecnología vuele, sin importar el hardware.</p>
+                <p>Máximo rendimiento en cualquier hardware. Especialidad en setups técnicos.</p>
             </div>
-            <div class="service-card hidden">
-                <i class="fas fa-drafting-pencil" style="color: var(--oro); font-size: 2rem; margin-bottom: 15px;"></i>
-                <h3>SOPORTE TECH</h3>
-                <p>Consultoría técnica para streamers e ingenieros en formación.</p>
+            <div class="card hidden">
+                <i class="fas fa-shield-halved"></i>
+                <h3>SEGURIDAD</h3>
+                <p>Arquitectura sólida y moderna para proteger tu identidad digital.</p>
             </div>
         </div>
     </section>
 
-    <section class="services" id="contacto">
-        <div class="services-header hidden">
-            <h2>Iniciar Proyecto</h2>
+    <section id="metodologia">
+        <h2 class="section-title hidden">Mi Proceso</h2>
+        <div class="grid">
+            <div class="step hidden">
+                <div class="step-num">01. DIAGNÓSTICO</div>
+                <p>Analizo tus necesidades y el hardware disponible para el proyecto.</p>
+            </div>
+            <div class="step hidden">
+                <div class="step-num">02. DESARROLLO</div>
+                <p>Codificación limpia siguiendo estándares de ingeniería mecatrónica.</p>
+            </div>
+            <div class="step hidden">
+                <div class="step-num">03. ENTREGA</div>
+                <p>Lanzamiento oficial con optimización de SEO y tiempos de carga.</p>
+            </div>
         </div>
-        
-        <form name="contacto-tavito" method="POST" data-netlify="true" class="hidden" style="max-width: 500px; margin: 0 auto; text-align: left;">
-            <div style="margin-bottom: 15px;">
-                <label style="display:block; color: var(--oro); margin-bottom: 5px;">Nombre</label>
-                <input type="text" name="name" style="width:100%; padding:12px; background: var(--tarjeta); border: 1px solid rgba(255,255,255,0.1); color: white;" required>
-            </div>
-            <div style="margin-bottom: 15px;">
-                <label style="display:block; color: var(--oro); margin-bottom: 5px;">Email</label>
-                <input type="email" name="email" style="width:100%; padding:12px; background: var(--tarjeta); border: 1px solid rgba(255,255,255,0.1); color: white;" required>
-            </div>
-            <div style="margin-bottom: 20px;">
-                <label style="display:block; color: var(--oro); margin-bottom: 5px;">Mensaje</label>
-                <textarea name="message" rows="4" style="width:100%; padding:12px; background: var(--tarjeta); border: 1px solid rgba(255,255,255,0.1); color: white;" required></textarea>
-            </div>
-            <button type="submit" class="btn-gold" style="width: 100%; cursor: pointer;">ENVIAR PROPUESTA</button>
+    </section>
+
+    <section id="contacto">
+        <h2 class="section-title hidden">Contacto</h2>
+        <form name="contacto-tavito" method="POST" data-netlify="true" class="hidden">
+            <input type="text" name="nombre" placeholder="Tu Nombre" required>
+            <input type="email" name="email" placeholder="Tu Email" required>
+            <textarea name="mensaje" rows="5" placeholder="Cuéntame sobre tu proyecto..." required></textarea>
+            <button type="submit" class="btn-gold">ENVIAR PROPUESTA</button>
         </form>
     </section>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
     <script>
-        // Tu script de Intersection Observer se queda igual
+        // OBSERVADOR PARA ANIMACIONES
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -187,5 +268,4 @@
         document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
     </script>
 </body>
-
 </html>
