@@ -3,247 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>elTavito.tech | Soluciones Digitales</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+    <title>elTavito.tech | Pro</title>
     <style>
-        /* 1. CONFIGURACIÓN BASE E INGENIERÍA DE COLOR */
         :root {
             --fondo: #121418;
             --tarjeta: #1a1d24;
             --oro: #c5a059;
-            --oro-glow: rgba(197, 160, 89, 0.2);
             --texto: #e0e0e0;
-            --texto-oscuro: #a0a0a0;
         }
 
-        /* Bloqueo de desbordamiento lateral - CRÍTICO PARA MÓVIL */
+        /* RESET TOTAL PARA EVITAR LÍNEAS EXTRAÑAS */
         * { 
             box-sizing: border-box; 
             margin: 0; 
             padding: 0; 
-            scroll-behavior: smooth; 
+            text-decoration: none !important; /* Mata cualquier subrayado */
+            border: none;
+            outline: none;
         }
 
         html, body {
             width: 100%;
-            max-width: 100vw;
-            overflow-x: hidden; /* Elimina la línea del medio y el deslizamiento lateral */
+            overflow-x: hidden;
             background-color: var(--fondo);
             color: var(--texto);
             font-family: 'Poppins', sans-serif;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* 2. ANIMACIONES DE APARICIÓN (SCROLL REVEAL) */
+        /* ANIMACIÓN MÁS SIMPLE PARA QUE NO FALLE */
         .hidden {
             opacity: 0;
             transform: translateY(20px);
-            transition: all 0.6s ease-out; /* Más rápido para respuesta inmediata */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
         .show {
-            opacity: 1;
-            transform: translateY(0);
+            opacity: 1 !important;
+            transform: translateY(0) !important;
         }
 
-        /* 3. SECCIÓN HERO (PORTADA) */
+        /* HERO */
         .hero {
             height: 100vh;
-            width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: radial-gradient(circle at center, #1e2229 0%, var(--fondo) 80%);
             padding: 20px;
         }
 
         .hero h1 {
-            font-size: clamp(2.2rem, 8vw, 5.5rem);
+            font-size: clamp(2rem, 7vw, 5rem);
             font-weight: 200;
-            letter-spacing: clamp(5px, 2vw, 15px);
+            letter-spacing: 5px;
+            text-transform: uppercase;
             color: white;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            line-height: 1.1;
+            margin-bottom: 20px;
         }
 
-        .hero h1 span {
+        .hero h1 span { color: var(--oro); font-weight: 700; }
+
+        /* BOTÓN LIMPIO SIN LÍNEAS */
+        .btn-gold {
+            display: inline-block;
+            padding: 15px 30px;
+            background: transparent;
+            border: 1px solid var(--oro) !important; /* Forzamos solo el borde dorado */
             color: var(--oro);
-            font-weight: 700;
-        }
-
-        .hero p {
-            color: var(--texto-oscuro);
-            font-size: clamp(0.7rem, 2vw, 1.1rem);
-            letter-spacing: 4px;
             text-transform: uppercase;
-            margin-bottom: 40px;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            font-weight: 600;
         }
 
-        /* 4. SECCIÓN DE SERVICIOS */
+        /* SECCIÓN SERVICIOS */
         .services {
-            padding: 80px 20px;
-            max-width: 1200px;
+            padding: 60px 20px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
-        .services-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .services-header h2 {
-            font-size: clamp(1.8rem, 5vw, 2.8rem);
-            font-weight: 300;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            color: var(--oro);
-        }
-
-        .services-header h2::after {
-            content: ''; display: block; width: 50px; height: 2px;
-            background: var(--oro); margin: 20px auto;
-        }
-
-        /* 5. GRID DE TARJETAS */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            width: 100%;
         }
 
         .service-card {
             background-color: var(--tarjeta);
-            padding: 40px 30px;
+            padding: 40px 25px;
             border-radius: 4px;
-            border: 1px solid rgba(255,255,255, 0.03);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-            transition: all 0.4s ease;
             text-align: center;
-        }
-
-        .service-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--oro);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
         }
 
         .service-card h3 {
-            font-size: 1.3rem;
             color: var(--oro);
             margin-bottom: 15px;
-            letter-spacing: 2px;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .service-card p {
-            color: var(--texto-oscuro);
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        /* 6. BOTÓN DE CONTACTO */
-        .cta-container {
-            text-align: center;
-            margin-top: 80px;
-            padding-bottom: 50px;
-        }
-
-        .btn-gold {
-            display: inline-block;
-            padding: 18px 40px;
-            background: transparent;
-            border: 1px solid var(--oro);
-            color: var(--oro);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            transition: all 0.4s ease;
-        }
-
-        .btn-gold:hover {
-            background: var(--oro);
-            color: #121418;
-            box-shadow: 0 0 30px var(--oro-glow);
-        }
-
-        /* 7. AJUSTES ESPECÍFICOS PARA MÓVIL EXTREMO */
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 1.9rem; /* Tamaño perfecto para iPhone sin desborde */
-                letter-spacing: 4px;
-            }
-            .hero p {
-                letter-spacing: 2px;
-                font-size: 0.75rem;
-            }
-            .service-card {
-                padding: 30px 20px;
-            }
-            .btn-gold {
-                width: 100%;
-                max-width: 280px;
-            }
+        /* MEDIA QUERIES PARA MÓVIL */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; letter-spacing: 3px; }
+            .service-card { padding: 30px 20px; }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <section class="hero">
-        <p class="hidden">Soluciones Digitales</p>
-        <h1 class="hidden">TAVITO<span>.TECH</span></h1>
-        <a href="#servicios" class="btn-gold hidden">Explorar Módulos</a>
+        <p class="hidden" style="letter-spacing: 5px; color: var(--oro); margin-bottom: 10px;">SOLUCIONES DIGITALES</p>
+        <h1 class="hidden">ELTAVITO<span>.TECH</span></h1>
+        <a href="#servicios" class="btn-gold hidden">EXPLORAR MÓDULOS</a>
     </section>
 
     <section class="services" id="servicios">
-        <div class="services-header hidden">
-            <h2>Ingeniería Web</h2>
-        </div>
-
         <div class="services-grid">
             <div class="service-card hidden">
-                <h3>Diseño Web Pro</h3>
-                <p>Creación de plataformas de alto impacto visual y rendimiento optimizado. Especializado en sectores comerciales.</p>
+                <h3>DISEÑO WEB PRO</h3>
+                <p>Creación de plataformas de alto impacto visual y rendimiento optimizado.</p>
             </div>
-
             <div class="service-card hidden">
-                <h3>Optimización</h3>
-                <p>Análisis de carga y SEO. Arquitectura de software eficiente adaptada a cualquier hardware.</p>
+                <h3>OPTIMIZACIÓN</h3>
+                <p>Análisis y mejora de tiempos de carga y SEO avanzado.</p>
             </div>
-
             <div class="service-card hidden">
-                <h3>Tech Support</h3>
-                <p>Consultoría en implementación de tecnología y flujos de trabajo digitales profesionales.</p>
+                <h3>INGENIERÍA</h3>
+                <p>Implementación de sistemas y flujos tecnológicos personalizados.</p>
             </div>
-        </div>
-
-        <div class="cta-container hidden">
-            <a href="https://wa.me/TUNUMEROAQUI" target="_blank" class="btn-gold">Iniciar Proyecto</a>
         </div>
     </section>
 
     <script>
-        // CONFIGURACIÓN DEL OBSERVADOR (ANIMACIÓN AL SCROLL)
-        const hiddenElements = document.querySelectorAll('.hidden');
+        // OBSERVADOR MEJORADO PARA MÓVIL
+        const observerOptions = {
+            root: null,
+            threshold: 0.05, // Se activa con solo ver un 5% del elemento
+            rootMargin: '0px 0px 50px 0px' // Se activa un poco antes de llegar
+        };
 
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
+            entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('show');
                 }
             });
-        }, {
-            // Se activa cuando asoma un 10% del elemento
-            threshold: 0.1,
-            // Margen para que la animación empiece un poco antes de llegar
-            rootMargin: "0px 0px -20px 0px"
-        });
+        }, observerOptions);
 
-        hiddenElements.forEach((el) => observer.observe(el));
+        document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
