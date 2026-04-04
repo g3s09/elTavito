@@ -3,118 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>elTavito:) | Servicios Pro</title>
+    <title>elTavito.tech | Soluciones Digitales</title>
     <style>
+        /* 1. VARIABLES PREMIUM (Paleta Barber/Estética) */
         :root {
-            --rojo-gamer: #ff003c;
-            --rojo-glow: rgba(255, 0, 60, 0.4);
-            --fondo-negro: #050505;
-            --cristal: rgba(255, 255, 255, 0.03);
+            --fondo: #121418; /* Slate Gray muy oscuro */
+            --tarjeta: #1a1d24; /* Un tono más claro para contraste */
+            --oro: #c5a059; /* Oro viejo/Bronce elegante */
+            --oro-glow: rgba(197, 160, 89, 0.2);
+            --texto: #e0e0e0;
+            --texto-oscuro: #a0a0a0;
         }
 
-        * { box-sizing: border-box; scroll-behavior: smooth; }
+        /* 2. RESET Y ESTRUCTURA GLOBAL */
+        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
 
         body {
-            margin: 0; background-color: var(--fondo-negro); color: white;
-            font-family: 'Segoe UI', sans-serif; overflow-x: hidden;
+            background-color: var(--fondo);
+            color: var(--texto);
+            font-family: 'Poppins', 'Segoe UI', sans-serif; /* Fuente más moderna y estética */
+            overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* FONDO Y SCANLINE */
-        .background-dots {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(var(--rojo-glow) 1px, transparent 1px);
-            background-size: 40px 40px; z-index: -1; animation: move-bg 20s linear infinite;
+        /* 3. CLASES DE ANIMACIÓN (Intersection Observer) */
+        .hidden {
+            opacity: 0;
+            transform: translateY(30px); /* Empieza abajo */
+            transition: all 1s ease-out; /* Animación suave de 1 seg */
         }
-        @keyframes move-bg { from { background-position: 0 0; } to { background-position: 40px 40px; } }
 
-        /* SECCIÓN HERO (LA QUE YA HICIMOS) */
+        .show {
+            opacity: 1;
+            transform: translateY(0); /* Sube a su posición original */
+        }
+
+        /* 4. SECCIÓN HERO (Elegante y minimalista) */
         .hero {
-            height: 100vh; display: flex; justify-content: center; align-items: center; position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #1e2229 0%, var(--fondo) 70%);
+            padding: 20px;
         }
 
-        .card-main {
-            background: rgba(20, 20, 20, 0.8); backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 0, 60, 0.3); padding: 3rem;
-            border-radius: 15px; text-align: center; z-index: 10;
-            transition: transform 0.2s ease-out;
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 200; /* Letra delgada, muy estética */
+            letter-spacing: 15px;
+            color: white;
+            text-transform: uppercase;
+            margin-bottom: 10px;
         }
 
-        h1 { font-size: 3.5rem; margin: 0; text-shadow: 0 0 15px var(--rojo-gamer); }
-
-        /* SECCIÓN DE SERVICIOS */
-        .services-section {
-            padding: 100px 20px; max-width: 1200px; margin: 0 auto; text-align: center;
+        .hero h1 span {
+            color: var(--oro);
+            font-weight: 700;
         }
 
+        .hero p {
+            color: var(--texto-oscuro);
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        /* 5. SECCIÓN DE SERVICIOS */
+        .services {
+            padding: 100px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .services-header h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--oro);
+        }
+
+        .services-header h2::after {
+            content: ''; display: block; width: 60px; height: 2px;
+            background: var(--oro); margin: 20px auto;
+        }
+
+        /* 6. GRID Y TARJETAS PREMIUM */
         .services-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px; margin-top: 50px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
         }
 
         .service-card {
-            background: var(--cristal); border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 40px; border-radius: 15px; transition: 0.3s;
+            background-color: var(--tarjeta);
+            padding: 50px;
+            border-radius: 4px; /* Bordes menos redondeados, más serios */
+            border: 1px solid rgba(255,255,255, 0.03);
+            /* SOMBRAS PROFUNDAS Y ESTÉTICAS */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .service-card:hover {
-            border-color: var(--rojo-gamer); background: rgba(255, 0, 60, 0.05);
-            transform: translateY(-10px);
+            transform: translateY(-5px);
+            border-color: rgba(197, 160, 89, 0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
-        .service-card h3 { color: var(--rojo-gamer); letter-spacing: 2px; }
-
-        /* BOTÓN DE CONTACTO WHATSAPP */
-        .contact-btn {
-            display: inline-block; margin-top: 50px; padding: 20px 50px;
-            background: var(--rojo-gamer); color: white; text-decoration: none;
-            font-weight: bold; border-radius: 5px; font-size: 1.2rem;
-            box-shadow: 0 0 20px var(--rojo-glow); transition: 0.3s;
+        /* Línea decorativa dorada al hover */
+        .service-card::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 0; height: 2px; background: var(--oro);
+            transition: width 0.4s ease;
         }
 
-        .contact-btn:hover { transform: scale(1.05); box-shadow: 0 0 40px var(--rojo-gamer); }
+        .service-card:hover::after { width: 100%; }
+
+        .service-card h3 {
+            font-size: 1.5rem; font-weight: 400;
+            color: var(--oro); letter-spacing: 2px;
+            text-transform: uppercase; margin-bottom: 15px;
+        }
+
+        .service-card p { color: var(--texto-oscuro); font-size: 0.95rem; }
+
+        /* 7. BOTÓN DE CONTACTO PREMIUM */
+        .cta-container { text-align: center; margin-top: 100px; }
+
+        .btn-gold {
+            display: inline-block;
+            padding: 18px 45px;
+            background: transparent;
+            border: 1px solid var(--oro);
+            color: var(--oro);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.4s ease;
+        }
+
+        .btn-gold:hover {
+            background: var(--oro);
+            color: #121418; /* Texto oscuro al hover */
+            box-shadow: 0 0 30px var(--oro-glow);
+        }
 
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="background-dots"></div>
-
     <section class="hero">
-        <div class="card-main" id="main-card">
-            <h1>elTavito:)</h1>
-            <p style="color: var(--rojo-gamer); font-family: monospace;">[ SISTEMA DE INGENIERÍA ONLINE ]</p>
-            <a href="#servicios" class="contact-btn" style="padding: 10px 25px; font-size: 0.9rem;">VER MÓDULOS</a>
-        </div>
+        <p class="hidden">Soluciones Digitales</p>
+        <h1 class="hidden">elTavito.<span>tech</span></h1>
+        <a href="#servicios" class="btn-gold hidden">Explorar Módulos</a>
     </section>
 
-    <section class="services-section" id="servicios">
-        <h2 style="font-size: 2.5rem; letter-spacing: 5px;">MIS SERVICIOS</h2>
+    <section class="services" id="servicios">
+        <div class="services-header hidden">
+            <h2>Ingeniería Web</h2>
+        </div>
+
         <div class="services-grid">
-            <div class="service-card">
-                <h3>WEB FORGE</h3>
-                <p>Diseño de páginas web profesionales para negocios locales (Barberías, Comida, Consultorios).</p>
+            <div class="service-card hidden">
+                <h3>Diseño Web Pro</h3>
+                <p>Creación de plataformas de alto impacto visual y rendimiento optimizado. Especializado en sectores estéticos y comerciales.</p>
             </div>
-            <div class="service-card">
-                <h3>TECH SETUP</h3>
-                <p>Optimización de software y hardware para streaming. Configuración de OBS y PCs de bajos recursos.</p>
+
+            <div class="service-card hidden">
+                <h3>Optimización</h3>
+                <p>Análisis y mejora de tiempos de carga y SEO. Arquitectura de software eficiente para cualquier hardware.</p>
             </div>
-            <div class="service-card">
-                <h3>INGENIERÍA</h3>
-                <p>Asesoría en proyectos de automatización, electrónica básica y programación en Python/Java.</p>
+
+            <div class="service-card hidden">
+                <h3>Soporte Técnico</h3>
+                <p>Consultoría directa en implementación de tecnología y flujos de trabajo digitales.</p>
             </div>
         </div>
 
-        <a href="https://wa.me/522331059304" target="_blank" class="contact-btn">COTIZAR PROYECTO (WhatsApp)</a>
+        <div class="cta-container hidden">
+            <a href="https://wa.me/522331059304" target="_blank" class="btn-gold">Iniciar Proyecto</a>
+        </div>
     </section>
 
     <script>
-        // Animación 3D de la tarjeta principal
-        const card = document.getElementById('main-card');
-        document.addEventListener('mousemove', (e) => {
-            let xAxis = (window.innerWidth / 2 - e.pageX) / 30;
-            let yAxis = (window.innerHeight / 2 - e.pageY) / 30;
-            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        // JAVASCRIPT AVANZADO: Intersection Observer (Animación al Scroll)
+        
+        // 1. Seleccionamos todos los elementos con la clase 'hidden'
+        const hiddenElements = document.querySelectorAll('.hidden');
+
+        // 2. Creamos el Observador
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                // Si el elemento entra en la pantalla...
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show'); // Añadimos la clase 'show'
+                    // Opcional: Dejar de observar después de animar
+                    // observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            // Parámetros: Umbral (threshold) del 20% para activar la animación
+            threshold: 0.2
         });
+
+        // 3. Le decimos al observador qué elementos mirar
+        hiddenElements.forEach((el) => observer.observe(el));
     </script>
+
 </body>
 </html>
