@@ -115,7 +115,10 @@
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
+
+    <div class="background-dots"></div>
 
     <section class="hero">
         <p class="hidden" style="letter-spacing: 5px; color: var(--oro); margin-bottom: 10px;">SOLUCIONES DIGITALES</p>
@@ -124,39 +127,65 @@
     </section>
 
     <section class="services" id="servicios">
+        <div class="services-header hidden">
+            <h2>Ingeniería Web</h2>
+        </div>
+
         <div class="services-grid">
             <div class="service-card hidden">
+                <i class="fas fa-code" style="color: var(--oro); font-size: 2rem; margin-bottom: 15px;"></i>
                 <h3>DISEÑO WEB PRO</h3>
-                <p>Creación de plataformas de alto impacto visual y rendimiento optimizado.</p>
+                <p>Sitios de alto impacto para negocios que buscan exclusividad y elegancia.</p>
             </div>
             <div class="service-card hidden">
                 <h3>OPTIMIZACIÓN</h3>
-                <p>Análisis y mejora de tiempos de carga y SEO avanzado.</p>
+                <i class="fas fa-microchip" style="color: var(--oro); font-size: 2rem; margin-bottom: 15px;"></i>
+                <p>Hacemos que tu tecnología vuele, sin importar el hardware.</p>
             </div>
             <div class="service-card hidden">
-                <h3>INGENIERÍA</h3>
-                <p>Implementación de sistemas y flujos tecnológicos personalizados.</p>
+                <i class="fas fa-drafting-pencil" style="color: var(--oro); font-size: 2rem; margin-bottom: 15px;"></i>
+                <h3>SOPORTE TECH</h3>
+                <p>Consultoría técnica para streamers e ingenieros en formación.</p>
             </div>
         </div>
     </section>
 
-    <script>
-        // OBSERVADOR MEJORADO PARA MÓVIL
-        const observerOptions = {
-            root: null,
-            threshold: 0.05, // Se activa con solo ver un 5% del elemento
-            rootMargin: '0px 0px 50px 0px' // Se activa un poco antes de llegar
-        };
+    <section class="services" id="contacto">
+        <div class="services-header hidden">
+            <h2>Iniciar Proyecto</h2>
+        </div>
+        
+        <form name="contacto-tavito" method="POST" data-netlify="true" class="hidden" style="max-width: 500px; margin: 0 auto; text-align: left;">
+            <div style="margin-bottom: 15px;">
+                <label style="display:block; color: var(--oro); margin-bottom: 5px;">Nombre</label>
+                <input type="text" name="name" style="width:100%; padding:12px; background: var(--tarjeta); border: 1px solid rgba(255,255,255,0.1); color: white;" required>
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label style="display:block; color: var(--oro); margin-bottom: 5px;">Email</label>
+                <input type="email" name="email" style="width:100%; padding:12px; background: var(--tarjeta); border: 1px solid rgba(255,255,255,0.1); color: white;" required>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label style="display:block; color: var(--oro); margin-bottom: 5px;">Mensaje</label>
+                <textarea name="message" rows="4" style="width:100%; padding:12px; background: var(--tarjeta); border: 1px solid rgba(255,255,255,0.1); color: white;" required></textarea>
+            </div>
+            <button type="submit" class="btn-gold" style="width: 100%; cursor: pointer;">ENVIAR PROPUESTA</button>
+        </form>
+    </section>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <script>
+        // Tu script de Intersection Observer se queda igual
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('show');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
         document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
     </script>
 </body>
+
 </html>
