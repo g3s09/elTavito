@@ -3,155 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>elTavito:) | Terminal Pro</title>
+    <title>elTavito:) | Servicios Pro</title>
     <style>
         :root {
             --rojo-gamer: #ff003c;
             --rojo-glow: rgba(255, 0, 60, 0.4);
             --fondo-negro: #050505;
+            --cristal: rgba(255, 255, 255, 0.03);
         }
 
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--fondo-negro);
-            color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            margin: 0; background-color: var(--fondo-negro); color: white;
+            font-family: 'Segoe UI', sans-serif; overflow-x: hidden;
         }
 
-        /* 1. ANIMACIÓN DE FONDO (PARTÍCULAS) */
+        /* FONDO Y SCANLINE */
         .background-dots {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: radial-gradient(var(--rojo-glow) 1px, transparent 1px);
-            background-size: 40px 40px;
-            z-index: -1;
-            animation: move-bg 20s linear infinite;
+            background-size: 40px 40px; z-index: -1; animation: move-bg 20s linear infinite;
+        }
+        @keyframes move-bg { from { background-position: 0 0; } to { background-position: 40px 40px; } }
+
+        /* SECCIÓN HERO (LA QUE YA HICIMOS) */
+        .hero {
+            height: 100vh; display: flex; justify-content: center; align-items: center; position: relative;
         }
 
-        @keyframes move-bg {
-            from { background-position: 0 0; }
-            to { background-position: 40px 40px; }
+        .card-main {
+            background: rgba(20, 20, 20, 0.8); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 0, 60, 0.3); padding: 3rem;
+            border-radius: 15px; text-align: center; z-index: 10;
+            transition: transform 0.2s ease-out;
         }
 
-        /* 2. EFECTO SCANLINE (Línea de monitor) */
-        .scanline {
-            width: 100%;
-            height: 100px;
-            z-index: 5;
-            background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(255, 0, 60, 0.05) 50%, rgba(0, 0, 0, 0) 100%);
-            opacity: 0.1;
-            position: absolute;
-            bottom: 100%;
-            animation: scanline 6s linear infinite;
+        h1 { font-size: 3.5rem; margin: 0; text-shadow: 0 0 15px var(--rojo-gamer); }
+
+        /* SECCIÓN DE SERVICIOS */
+        .services-section {
+            padding: 100px 20px; max-width: 1200px; margin: 0 auto; text-align: center;
         }
 
-        @keyframes scanline {
-            0% { bottom: 100%; }
-            100% { bottom: -100px; }
+        .services-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px; margin-top: 50px;
         }
 
-        /* 3. TARJETA GLASSMORPISM */
-        .card {
-            background: rgba(20, 20, 20, 0.7);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 0, 60, 0.2);
-            padding: 4rem 2rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 0 50px rgba(0,0,0,0.8);
-            position: relative;
-            z-index: 10;
+        .service-card {
+            background: var(--cristal); border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px; border-radius: 15px; transition: 0.3s;
         }
 
-        /* 4. TEXTO NEÓN */
-        h1 {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            margin: 0;
-            letter-spacing: 10px;
-            color: #fff;
-            text-shadow: 0 0 10px var(--rojo-gamer), 0 0 30px var(--rojo-gamer);
-            animation: flicker 4s infinite alternate;
+        .service-card:hover {
+            border-color: var(--rojo-gamer); background: rgba(255, 0, 60, 0.05);
+            transform: translateY(-10px);
         }
 
-        .status-text {
-            color: var(--rojo-gamer);
-            font-family: 'Courier New', monospace;
-            display: block;
-            margin-top: 15px;
-            letter-spacing: 3px;
-            font-size: 0.9rem;
-            opacity: 0.8;
+        .service-card h3 { color: var(--rojo-gamer); letter-spacing: 2px; }
+
+        /* BOTÓN DE CONTACTO WHATSAPP */
+        .contact-btn {
+            display: inline-block; margin-top: 50px; padding: 20px 50px;
+            background: var(--rojo-gamer); color: white; text-decoration: none;
+            font-weight: bold; border-radius: 5px; font-size: 1.2rem;
+            box-shadow: 0 0 20px var(--rojo-glow); transition: 0.3s;
         }
 
-        /* 5. BOTÓN GAMER */
-        .btn {
-            margin-top: 40px;
-            padding: 15px 40px;
-            background: transparent;
-            border: 2px solid var(--rojo-gamer);
-            color: white;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-weight: 900;
-            letter-spacing: 2px;
-            transition: 0.4s;
-            position: relative;
-            overflow: hidden;
-            display: inline-block;
-        }
-
-        .btn:hover {
-            background: var(--rojo-gamer);
-            box-shadow: 0 0 30px var(--rojo-gamer);
-            color: black;
-        }
-
-        /* 6. EFECTO FLICKER (NEÓN REALISTA) */
-        @keyframes flicker {
-            0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; text-shadow: 0 0 10px var(--rojo-gamer), 0 0 30px var(--rojo-gamer); }
-            20%, 24%, 55% { opacity: 0.4; text-shadow: none; }
-        }
+        .contact-btn:hover { transform: scale(1.05); box-shadow: 0 0 40px var(--rojo-gamer); }
 
     </style>
 </head>
 <body>
 
     <div class="background-dots"></div>
-    <div class="scanline"></div>
 
-    <div class="card">
-        <h1>elTavito:)</h1>
-        <span class="status-text">> MECATRÓNICA_OS_V1.0</span>
-        <p style="opacity: 0.6; font-size: 0.8rem; margin-top: 20px;">[ WEB DEVELOPER | COD STREAMER ]</p>
-        <a href="#" class="btn">INICIAR SESIÓN</a>
-    </div>
+    <section class="hero">
+        <div class="card-main" id="main-card">
+            <h1>elTavito:)</h1>
+            <p style="color: var(--rojo-gamer); font-family: monospace;">[ SISTEMA DE INGENIERÍA ONLINE ]</p>
+            <a href="#servicios" class="contact-btn" style="padding: 10px 25px; font-size: 0.9rem;">VER MÓDULOS</a>
+        </div>
+    </section>
 
-<script>
-    const card = document.querySelector('.card');
+    <section class="services-section" id="servicios">
+        <h2 style="font-size: 2.5rem; letter-spacing: 5px;">MIS SERVICIOS</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>WEB FORGE</h3>
+                <p>Diseño de páginas web profesionales para negocios locales (Barberías, Comida, Consultorios).</p>
+            </div>
+            <div class="service-card">
+                <h3>TECH SETUP</h3>
+                <p>Optimización de software y hardware para streaming. Configuración de OBS y PCs de bajos recursos.</p>
+            </div>
+            <div class="service-card">
+                <h3>INGENIERÍA</h3>
+                <p>Asesoría en proyectos de automatización, electrónica básica y programación en Python/Java.</p>
+            </div>
+        </div>
 
-    // Efecto de inclinación 3D (Solo en PC con Mouse)
-    document.addEventListener('mousemove', (e) => {
-        let xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-        let yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-        card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-    });
+        <a href="https://wa.me/522331059304" target="_blank" class="contact-btn">COTIZAR PROYECTO (WhatsApp)</a>
+    </section>
 
-    // Resetear posición cuando el mouse sale
-    document.addEventListener('mouseenter', () => {
-        card.style.transition = 'none';
-    });
-    document.addEventListener('mouseleave', () => {
-        card.style.transition = 'all 0.5s ease';
-        card.style.transform = `rotateY(0deg) rotateX(0deg)`;
-    });
-</script>
-
+    <script>
+        // Animación 3D de la tarjeta principal
+        const card = document.getElementById('main-card');
+        document.addEventListener('mousemove', (e) => {
+            let xAxis = (window.innerWidth / 2 - e.pageX) / 30;
+            let yAxis = (window.innerHeight / 2 - e.pageY) / 30;
+            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+    </script>
 </body>
 </html>
