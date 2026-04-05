@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>elTavito.tech | Ingeniería & Diseño Web</title>
     
-    <meta name="description" content="Soluciones de Ingeniería Web, Diseño Premium y Optimización de Sistemas por Sandra.">
-    <meta name="author" content="Sandra - elTavito.tech">
-    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2942/2942531.png" type="image/x-icon">
-
+    <meta name="description" content="Soluciones de Ingeniería Web y Optimización por Sandra.">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
@@ -19,7 +16,6 @@
             --oro: #c5a059;
             --oro-glow: rgba(197, 160, 89, 0.2);
             --texto: #e0e0e0;
-            --texto-oscuro: #a0a0a0;
         }
 
         * { 
@@ -27,7 +23,6 @@
             margin: 0; padding: 0; 
             text-decoration: none !important; 
             -webkit-tap-highlight-color: transparent;
-            scroll-behavior: smooth;
         }
 
         html, body {
@@ -37,19 +32,16 @@
             background-color: var(--fondo);
             color: var(--texto);
             font-family: 'Poppins', sans-serif;
-            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
         }
 
-        /* FONDO DE PARTÍCULAS */
         #particles-js {
             position: fixed;
             width: 100%; height: 100%;
             top: 0; left: 0;
-            z-index: 1;
-            background-color: var(--fondo);
+            z-index: 1; /* Fondo */
         }
 
-        /* NAVEGACIÓN FIJA */
         nav {
             position: fixed; top: 0; width: 100%;
             background: rgba(18, 20, 24, 0.95);
@@ -58,40 +50,35 @@
             border-bottom: 1px solid rgba(197, 160, 89, 0.1);
         }
         nav ul { display: flex; justify-content: center; list-style: none; gap: 20px; }
-        nav a { color: var(--texto-oscuro); text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; font-weight: 600; transition: 0.3s; }
-        nav a:hover { color: var(--oro); }
+        nav a { color: #a0a0a0; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; font-weight: 600; }
 
-        /* ANIMACIONES AL SCROLL */
-        .hidden { opacity: 0; transform: translateY(15px); transition: all 0.6s ease-out; backface-visibility: hidden; }
+        .hidden { opacity: 0; transform: translateY(15px); transition: all 0.6s ease-out; }
         .show { opacity: 1 !important; transform: translateY(0) !important; }
 
-        /* SECCIONES */
         section { padding: 100px 20px; max-width: 1100px; margin: 0 auto; text-align: center; position: relative; z-index: 10; }
-        .section-title { font-size: 2rem; font-weight: 300; letter-spacing: 5px; text-transform: uppercase; color: var(--oro); margin-bottom: 50px; }
+        .section-title { font-size: 2rem; color: var(--oro); margin-bottom: 50px; letter-spacing: 5px; text-transform: uppercase; }
 
-        /* HERO */
         .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        .hero h1 { font-size: clamp(1.8rem, 8vw, 5rem); font-weight: 200; letter-spacing: 5px; color: white; margin-bottom: 15px; }
+        .hero h1 { font-size: clamp(1.8rem, 8vw, 5rem); color: white; letter-spacing: 5px; }
         .hero h1 span { color: var(--oro); font-weight: 700; }
 
-        /* GRID & CARDS */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .card { background-color: var(--tarjeta); padding: 40px; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: 0.3s; }
-        .card i { color: var(--oro); font-size: 2.5rem; margin-bottom: 20px; }
+        /* --- FORMULARIO FIX --- */
+        form { 
+            max-width: 550px; 
+            margin: 0 auto; 
+            text-align: left; 
+            background: var(--tarjeta); 
+            padding: 30px; 
+            border-radius: 8px;
+            position: relative;
+            z-index: 50; /* Por encima de todo */
+        }
 
-        /* METODOLOGÍA (PASOS) */
-        .step { text-align: left; padding: 25px; border-left: 1px solid var(--oro); background: rgba(255,255,255,0.02); margin-bottom: 15px; }
-        .step-num { font-weight: 700; color: var(--oro); opacity: 0.4; font-size: 1.2rem; }
-
-        /* FORMULARIO FIX IPHONE */
-        form { max-width: 550px; margin: 0 auto; text-align: left; background: var(--tarjeta); padding: 30px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        
         input, textarea {
             width: 100%; padding: 15px; margin-bottom: 15px;
             background: #0d0f12; border: 1px solid rgba(255,255,255,0.1);
             color: white; font-family: inherit;
-            /* 16px evita el zoom automático en iPhone */
-            font-size: 16px !important; 
+            font-size: 16px !important; /* Evita zoom en iPhone */
             border-radius: 4px;
             -webkit-appearance: none;
         }
@@ -101,20 +88,16 @@
             background: transparent; color: var(--oro);
             outline: 1px solid var(--oro); outline-offset: -1px;
             border: none !important; text-transform: uppercase;
-            letter-spacing: 3px; font-weight: 600; cursor: pointer;
+            letter-spacing: 3px; font-weight: 600; 
+            cursor: pointer;
+            pointer-events: auto !important; /* Asegura que reciba el toque */
+            position: relative;
+            z-index: 100; /* Prioridad máxima de clic */
             transition: 0.3s;
         }
-        .btn-gold:hover { background: var(--oro); color: #121418; box-shadow: 0 0 20px var(--oro-glow); }
+        .btn-gold:hover { background: var(--oro); color: #121418; }
 
-        /* FOOTER */
-        footer { background: #0d0f12; padding: 60px 20px; border-top: 1px solid rgba(197, 160, 89, 0.1); text-align: center; position: relative; z-index: 10; }
-
-        @media (max-width: 768px) {
-            .grid { grid-template-columns: 1fr !important; }
-            .hero h1 { font-size: 2.2rem !important; }
-            section { padding: 60px 15px; }
-            nav ul { gap: 15px; }
-        }
+        footer { padding: 40px; text-align: center; position: relative; z-index: 10; border-top: 1px solid rgba(197, 160, 89, 0.1); }
     </style>
 </head>
 <body>
@@ -124,104 +107,50 @@
     <nav>
         <ul>
             <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#proceso">Metodología</a></li>
             <li><a href="#contacto">Contacto</a></li>
         </ul>
     </nav>
 
     <section class="hero" id="inicio">
-        <p class="hidden" style="color: var(--oro); letter-spacing: 4px; margin-bottom: 10px;">INGENIERÍA MECATRÓNICA</p>
         <h1 class="hidden">ELTAVITO<span>.TECH</span></h1>
-        <p class="hidden" style="color: var(--texto-oscuro); max-width: 600px;">Optimización de sistemas y diseño web de alto impacto visual.</p>
-    </section>
-
-    <section id="servicios">
-        <h2 class="section-title hidden">Servicios Pro</h2>
-        <div class="grid">
-            <div class="card hidden">
-                <i class="fas fa-microchip"></i>
-                <h3>OPTIMIZACIÓN</h3>
-                <p>Máximo rendimiento para hardware de bajos recursos y setups de alto nivel.</p>
-            </div>
-            <div class="card hidden">
-                <i class="fas fa-code"></i>
-                <h3>DESARROLLO</h3>
-                <p>Sitios web estéticos inspirados en marcas premium y sectores exclusivos.</p>
-            </div>
-            <div class="card hidden">
-                <i class="fas fa-shield-halved"></i>
-                <h3>INGENIERÍA</h3>
-                <p>Consultoría técnica en automatización y despliegue de software.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="proceso">
-        <h2 class="section-title hidden">Metodología</h2>
-        <div class="grid">
-            <div class="step hidden">
-                <div class="step-num">01.</div>
-                <h3>Diagnóstico</h3>
-                <p>Evaluación técnica de los requerimientos y el hardware base.</p>
-            </div>
-            <div class="step hidden">
-                <div class="step-num">02.</div>
-                <h3>Desarrollo</h3>
-                <p>Implementación de código eficiente y diseño Slate & Gold.</p>
-            </div>
-            <div class="step hidden">
-                <div class="step-num">03.</div>
-                <h3>Entrega</h3>
-                <p>Lanzamiento oficial con optimización de carga y SEO.</p>
-            </div>
-        </div>
+        <p class="hidden">Ingeniería & Diseño Web Premium</p>
     </section>
 
     <section id="contacto">
         <h2 class="section-title hidden">Contacto</h2>
-        <form name="contacto-tavito" action="gracias.html" method="POST" data-netlify="true" class="hidden"></form>
+        
+        <form name="contacto-tavito" action="gracias.html" method="POST" data-netlify="true" class="hidden">
             <input type="hidden" name="form-name" value="contacto-tavito" />
             
             <input type="text" name="nombre" placeholder="Tu Nombre" required>
             <input type="email" name="email" placeholder="Tu Email" required>
-            <textarea name="mensaje" rows="4" placeholder="Cuéntame sobre tu proyecto..." required></textarea>
+            <textarea name="mensaje" rows="4" placeholder="Tu mensaje..." required></textarea>
             
             <button type="submit" class="btn-gold">ENVIAR PROPUESTA</button>
         </form>
     </section>
 
     <footer>
-        <div style="margin-bottom: 20px; display: flex; justify-content: center; gap: 20px;">
-            <a href="https://github.com/g3s09" target="_blank" style="color: var(--oro);"><i class="fab fa-github fa-lg"></i></a>
-            <a href="#" style="color: var(--oro);"><i class="fab fa-tiktok fa-lg"></i></a>
-            <a href="#" style="color: var(--oro);"><i class="fab fa-youtube fa-lg"></i></a>
-        </div>
-        <p style="color: var(--texto-oscuro); font-size: 0.75rem;">&copy; 2026 elTavito.tech | Sandra Mechatronics.</p>
+        <p style="color: #a0a0a0; font-size: 0.8rem;">&copy; 2026 elTavito.tech | Sandra</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // CONFIGURACIÓN DE PARTÍCULAS DORADAS
         particlesJS("particles-js", {
             "particles": {
-                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+                "number": { "value": 50 },
                 "color": { "value": "#c5a059" },
                 "opacity": { "value": 0.2 },
                 "size": { "value": 2 },
-                "line_linked": { "enable": true, "distance": 150, "color": "#c5a059", "opacity": 0.1, "width": 1 },
-                "move": { "enable": true, "speed": 1.2 }
+                "line_linked": { "enable": true, "distance": 150, "color": "#c5a059", "opacity": 0.1 },
+                "move": { "enable": true, "speed": 1 }
             },
-            "interactivity": { "events": { "onhover": { "enable": true, "mode": "repulse" } } },
-            "retina_detect": true
+            "interactivity": { "events": { "onhover": { "enable": true, "mode": "repulse" } } }
         });
 
-        // OBSERVADOR PARA ANIMACIONES AL HACER SCROLL
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) { 
-                    entry.target.classList.add('show'); 
-                }
+                if (entry.isIntersecting) entry.target.classList.add('show');
             });
         }, { threshold: 0.1 });
 
