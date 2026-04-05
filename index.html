@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>elTavito.tech | Ingeniería & Diseño Web</title>
     
-    <meta name="description" content="Soluciones de Ingeniería Web y Optimización por Sandra.">
+    <meta name="description" content="Soluciones de Ingeniería Web, Diseño Premium y Optimización de Sistemas por Sandra.">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
@@ -16,6 +16,7 @@
             --oro: #c5a059;
             --oro-glow: rgba(197, 160, 89, 0.2);
             --texto: #e0e0e0;
+            --texto-oscuro: #a0a0a0;
         }
 
         * { 
@@ -23,6 +24,7 @@
             margin: 0; padding: 0; 
             text-decoration: none !important; 
             -webkit-tap-highlight-color: transparent;
+            scroll-behavior: smooth;
         }
 
         html, body {
@@ -32,16 +34,19 @@
             background-color: var(--fondo);
             color: var(--texto);
             font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
         }
 
+        /* FONDO */
         #particles-js {
             position: fixed;
             width: 100%; height: 100%;
             top: 0; left: 0;
-            z-index: 1; /* Fondo */
+            z-index: 1;
+            background-color: var(--fondo);
         }
 
+        /* NAVEGACIÓN */
         nav {
             position: fixed; top: 0; width: 100%;
             background: rgba(18, 20, 24, 0.95);
@@ -49,55 +54,78 @@
             padding: 15px 0; z-index: 1000;
             border-bottom: 1px solid rgba(197, 160, 89, 0.1);
         }
-        nav ul { display: flex; justify-content: center; list-style: none; gap: 20px; }
-        nav a { color: #a0a0a0; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; font-weight: 600; }
+        nav ul { display: flex; justify-content: center; list-style: none; gap: 25px; }
+        nav a { color: var(--texto-oscuro); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px; font-weight: 600; transition: 0.3s; }
+        nav a:hover { color: var(--oro); }
 
-        .hidden { opacity: 0; transform: translateY(15px); transition: all 0.6s ease-out; }
-        .show { opacity: 1 !important; transform: translateY(0) !important; }
+        /* TRANSICIONES MEJORADAS */
+        .hidden { 
+            opacity: 0; 
+            transform: translateY(30px); 
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); 
+            backface-visibility: hidden;
+        }
+        .show { 
+            opacity: 1 !important; 
+            transform: translateY(0) !important; 
+        }
 
+        /* SECCIONES */
         section { padding: 100px 20px; max-width: 1100px; margin: 0 auto; text-align: center; position: relative; z-index: 10; }
-        .section-title { font-size: 2rem; color: var(--oro); margin-bottom: 50px; letter-spacing: 5px; text-transform: uppercase; }
+        .section-title { font-size: 2.2rem; font-weight: 200; letter-spacing: 6px; text-transform: uppercase; color: var(--oro); margin-bottom: 60px; }
 
+        /* HERO */
         .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        .hero h1 { font-size: clamp(1.8rem, 8vw, 5rem); color: white; letter-spacing: 5px; }
+        .hero h1 { font-size: clamp(2rem, 10vw, 5.5rem); font-weight: 200; letter-spacing: 8px; color: white; margin-bottom: 15px; }
         .hero h1 span { color: var(--oro); font-weight: 700; }
 
-        /* --- FORMULARIO FIX --- */
+        /* GRID & CARDS */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { 
+            background-color: var(--tarjeta); padding: 50px 30px; border-radius: 4px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4); transition: 0.4s;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+        .card:hover { transform: translateY(-10px); border-color: var(--oro); }
+        .card i { color: var(--oro); font-size: 2.8rem; margin-bottom: 25px; }
+
+        /* METODOLOGÍA */
+        .step { text-align: left; padding: 30px; background: rgba(255,255,255,0.02); border-left: 2px solid var(--oro); margin-bottom: 20px; }
+        .step h3 { color: var(--oro); letter-spacing: 2px; margin-bottom: 10px; }
+
+        /* FORMULARIO FIX FINAL */
         form { 
-            max-width: 550px; 
-            margin: 0 auto; 
-            text-align: left; 
-            background: var(--tarjeta); 
-            padding: 30px; 
-            border-radius: 8px;
-            position: relative;
-            z-index: 50; /* Por encima de todo */
+            max-width: 600px; margin: 0 auto; text-align: left; 
+            background: var(--tarjeta); padding: 40px; border-radius: 8px; 
+            position: relative; z-index: 100; /* Prioridad sobre partículas */
         }
 
         input, textarea {
-            width: 100%; padding: 15px; margin-bottom: 15px;
+            width: 100%; padding: 16px; margin-bottom: 20px;
             background: #0d0f12; border: 1px solid rgba(255,255,255,0.1);
             color: white; font-family: inherit;
-            font-size: 16px !important; /* Evita zoom en iPhone */
-            border-radius: 4px;
-            -webkit-appearance: none;
+            font-size: 16px !important; /* CRÍTICO: No zoom en iPhone */
+            border-radius: 4px; -webkit-appearance: none;
         }
 
         .btn-gold {
-            display: inline-block; width: 100%; padding: 18px;
+            display: inline-block; width: 100%; padding: 20px;
             background: transparent; color: var(--oro);
             outline: 1px solid var(--oro); outline-offset: -1px;
             border: none !important; text-transform: uppercase;
-            letter-spacing: 3px; font-weight: 600; 
-            cursor: pointer;
-            pointer-events: auto !important; /* Asegura que reciba el toque */
-            position: relative;
-            z-index: 100; /* Prioridad máxima de clic */
-            transition: 0.3s;
+            letter-spacing: 4px; font-weight: 700; cursor: pointer;
+            position: relative; z-index: 110; pointer-events: auto !important;
+            transition: 0.4s;
         }
-        .btn-gold:hover { background: var(--oro); color: #121418; }
+        .btn-gold:hover { background: var(--oro); color: #121418; box-shadow: 0 0 25px var(--oro-glow); }
 
-        footer { padding: 40px; text-align: center; position: relative; z-index: 10; border-top: 1px solid rgba(197, 160, 89, 0.1); }
+        footer { padding: 60px 20px; text-align: center; position: relative; z-index: 10; border-top: 1px solid rgba(197, 160, 89, 0.1); }
+
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr !important; }
+            section { padding: 80px 15px; }
+            .hero h1 { font-size: 2.5rem !important; }
+        }
     </style>
 </head>
 <body>
@@ -107,50 +135,96 @@
     <nav>
         <ul>
             <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#servicios">Servicios</a></li>
             <li><a href="#contacto">Contacto</a></li>
         </ul>
     </nav>
 
     <section class="hero" id="inicio">
+        <p class="hidden" style="color: var(--oro); letter-spacing: 5px; margin-bottom: 15px;">MECATRÓNICA & DESARROLLO</p>
         <h1 class="hidden">ELTAVITO<span>.TECH</span></h1>
-        <p class="hidden">Ingeniería & Diseño Web Premium</p>
+        <p class="hidden" style="color: var(--texto-oscuro); max-width: 600px;">Optimización de sistemas y diseño digital premium.</p>
+    </section>
+
+    <section id="servicios">
+        <h2 class="section-title hidden">Servicios Especializados</h2>
+        <div class="grid">
+            <div class="card hidden">
+                <i class="fas fa-bolt"></i>
+                <h3>OPTIMIZACIÓN</h3>
+                <p>Estrategias de rendimiento para equipos limitados y estaciones de trabajo de alto nivel.</p>
+            </div>
+            <div class="card hidden">
+                <i class="fas fa-layer-group"></i>
+                <h3>DISEÑO WEB</h3>
+                <p>Interfaces minimalistas basadas en el concepto Slate & Gold para marcas exclusivas.</p>
+            </div>
+            <div class="card hidden">
+                <i class="fas fa-microchip"></i>
+                <h3>INGENIERÍA</h3>
+                <p>Soluciones técnicas integrales en automatización y despliegue de proyectos.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="proceso">
+        <h2 class="section-title hidden">Mi Metodología</h2>
+        <div class="step hidden">
+            <h3>01. ANÁLISIS</h3>
+            <p>Diagnóstico profundo de la arquitectura actual y objetivos del sistema.</p>
+        </div>
+        <div class="step hidden">
+            <h3>02. DESARROLLO</h3>
+            <p>Escritura de código limpio y optimización de recursos gráficos.</p>
+        </div>
+        <div class="step hidden">
+            <h3>03. DESPLIEGUE</h3>
+            <p>Lanzamiento con monitoreo constante y ajustes de precisión.</p>
+        </div>
     </section>
 
     <section id="contacto">
         <h2 class="section-title hidden">Contacto</h2>
-        
         <form name="contacto-tavito" action="gracias.html" method="POST" data-netlify="true" class="hidden">
             <input type="hidden" name="form-name" value="contacto-tavito" />
             
             <input type="text" name="nombre" placeholder="Tu Nombre" required>
             <input type="email" name="email" placeholder="Tu Email" required>
-            <textarea name="mensaje" rows="4" placeholder="Tu mensaje..." required></textarea>
+            <textarea name="mensaje" rows="5" placeholder="Cuéntame sobre tu proyecto..." required></textarea>
             
             <button type="submit" class="btn-gold">ENVIAR PROPUESTA</button>
         </form>
     </section>
 
     <footer>
-        <p style="color: #a0a0a0; font-size: 0.8rem;">&copy; 2026 elTavito.tech | Sandra</p>
+        <div style="margin-bottom: 25px; display: flex; justify-content: center; gap: 30px;">
+            <a href="https://github.com/g3s09" target="_blank" style="color: var(--oro); font-size: 1.5rem;"><i class="fab fa-github"></i></a>
+            <a href="#" style="color: var(--oro); font-size: 1.5rem;"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <p style="color: var(--texto-oscuro); font-size: 0.8rem; letter-spacing: 1px;">&copy; 2026 elTavito.tech | Sandra Mechatronics</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
         particlesJS("particles-js", {
             "particles": {
-                "number": { "value": 50 },
+                "number": { "value": 70, "density": { "enable": true, "value_area": 800 } },
                 "color": { "value": "#c5a059" },
                 "opacity": { "value": 0.2 },
                 "size": { "value": 2 },
-                "line_linked": { "enable": true, "distance": 150, "color": "#c5a059", "opacity": 0.1 },
-                "move": { "enable": true, "speed": 1 }
+                "line_linked": { "enable": true, "distance": 150, "color": "#c5a059", "opacity": 0.1, "width": 1 },
+                "move": { "enable": true, "speed": 1.5 }
             },
-            "interactivity": { "events": { "onhover": { "enable": true, "mode": "repulse" } } }
+            "interactivity": { "events": { "onhover": { "enable": true, "mode": "repulse" } } },
+            "retina_detect": true
         });
 
+        // REVELACIÓN AL SCROLL CON AJUSTE PARA IPHONE
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('show');
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
             });
         }, { threshold: 0.1 });
 
